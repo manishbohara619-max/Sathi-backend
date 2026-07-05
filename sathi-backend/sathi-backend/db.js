@@ -22,6 +22,9 @@ const DATA_DIR = path.join(__dirname, 'data');
 const HELPERS_FILE = path.join(DATA_DIR, 'helpers.json');
 const BOOKINGS_FILE = path.join(DATA_DIR, 'bookings.json');
 
+if (!fs.existsSync(DATA_DIR)) {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+}
 function ensureFile(filePath, defaultValue) {
   if (!fs.existsSync(filePath)) {
     fs.writeFileSync(filePath, JSON.stringify(defaultValue, null, 2));
